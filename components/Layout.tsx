@@ -108,7 +108,7 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
                   </div>
 
                   <div
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu-button"
@@ -289,13 +289,6 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
         </div>
       </nav>
 
-      <header className="bg-white shadow">
-        <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Dashboard
-          </h1>
-        </div>
-      </header>
       <main>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
