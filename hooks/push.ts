@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { post, put } from "../libs/api";
 
-export const usePush = (uri: string, method: string = "POST") => {
+export const usePush = (uri: string, method = "POST") => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({});
 

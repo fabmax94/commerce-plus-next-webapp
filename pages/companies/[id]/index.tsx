@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from "next";
 import { Company } from "../../../interfaces";
-import Layout from "../../../components/Layout";
+import Main from "../../../components/layouts/main";
 import ListDetail from "../../../components/ListDetail";
 import { sampleCompanyData } from "../../../utils/sample-data";
 
@@ -12,22 +12,22 @@ type Props = {
 const CompanyDetail = ({ item, errors }: Props) => {
   if (errors) {
     return (
-      <Layout title="Error | Next.js + TypeScript Example">
+      <Main title="Error | Next.js + TypeScript Example">
         <p>
           <span style={{ color: "red" }}>Error:</span> {errors}
         </p>
-      </Layout>
+      </Main>
     );
   }
 
   return (
-    <Layout
+    <Main
       title={`${
         item ? item.name : "User Detail"
       } | Next.js + TypeScript Example`}
     >
       {item && <ListDetail item={item} />}
-    </Layout>
+    </Main>
   );
 };
 

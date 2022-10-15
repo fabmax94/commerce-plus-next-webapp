@@ -1,4 +1,4 @@
-import Layout from "../../components/Layout";
+import Main from "../../components/layouts/main";
 import { usePush } from "../../hooks/push";
 import { ChangeEvent, useState } from "react";
 
@@ -23,7 +23,7 @@ const CreateCompanies = () => {
   };
 
   return (
-    <Layout title="Nova Loja">
+    <Main title="Nova Loja">
       <div className="mt-10 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
@@ -139,7 +139,7 @@ const CreateCompanies = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </Main>
   );
 };
 
