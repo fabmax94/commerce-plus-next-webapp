@@ -40,7 +40,7 @@ const post = (uri, data, config = {}) => {
 };
 
 const put = (uri, data, config = {}) => {
-  return server.put(uri, data, getAuthorization(config));
+  return server.patch(uri, data, getAuthorization(config));
 };
 
 export { get, post, put, server, BASE_HOST, HOST };

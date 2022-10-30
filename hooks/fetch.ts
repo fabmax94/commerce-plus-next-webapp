@@ -6,10 +6,10 @@ export type FetchReturn<T> = {
   error: any;
   isLoading: boolean;
   reValidate: any;
-  isValidating: boolean
+  isValidating: boolean;
 };
 
-export const useFetch = <D>(url, options = null) : FetchReturn<D> => {
+export const useFetch = <D>(url, options = null): FetchReturn<D> => {
   const fetcher = async (url) => {
     const response = await get(url);
     return response.data;

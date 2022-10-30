@@ -37,7 +37,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
           Meu Perfil
         </a>
         <a
-          href="components/layouts/main#"
+          href="/profile/companies"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           role="menuitem"
           id="user-menu-item-0"
@@ -162,7 +162,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
                     <BsPersonCircle
                       onClick={() => setOpenMenu((open) => !open)}
                       size={30}
-                      className="text-gray-500 cursor-pointer"
+                      className="text-red-500 cursor-pointer"
                     />
 
                     <div

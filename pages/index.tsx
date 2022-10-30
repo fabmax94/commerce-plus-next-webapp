@@ -1,14 +1,15 @@
-import Link from "next/link";
-import Main from "../components/layouts/main";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
-const IndexPage = () => (
-  <Main title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a className="text-sm font-medium text-gray-900">About</a>
-      </Link>
-    </p>
-  </Main>
-);
+const IndexPage = () => {
+  const router = useRouter();
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  useEffect(async () => {
+    await router.push("/companies");
+  }, []);
+
+  return null;
+};
 export default IndexPage;
