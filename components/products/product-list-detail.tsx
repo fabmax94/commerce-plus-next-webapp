@@ -1,0 +1,34 @@
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  size: number;
+  description: string;
+  image: string;
+}
+
+interface ProductListDetailParam {
+  product: Product;
+}
+
+const ProductListDetail = ({ product }: ProductListDetailParam) => {
+  const { name, description, price, image } = product;
+  return (
+    <div className="flex flex-row hover:shadow-lg hover:rounded-lg p-2.5 cursor-pointer transition duration-300 hover:delay-150">
+      <div className="flex flex-col flex-1">
+        <h3 className="text-lg mb-3">{name}</h3>
+        <span className="text-sm font-light text-zinc-500 mb-5">
+          {description}
+        </span>
+        <span className="text-base">R${price}</span>
+      </div>
+      <img
+        alt="Imagem do produto"
+        className="object-cover object-center w-24 mr-5 rounded-lg"
+        src={image}
+      />
+    </div>
+  );
+};
+
+export default ProductListDetail;

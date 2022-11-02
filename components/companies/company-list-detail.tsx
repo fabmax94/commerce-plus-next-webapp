@@ -1,10 +1,21 @@
 import { AiFillStar } from "react-icons/ai";
 
-const CompanyListDetail = ({ image, name, subType, averageRate }) => {
+const CompanyListDetail = ({
+  id,
+  image,
+  name,
+  subType,
+  averageRate,
+  onClick,
+}) => {
   return (
-    <div className="flex flex-row hover:shadow-lg hover:rounded-lg p-2.5 cursor-pointer transition duration-300 hover:delay-150">
+    <div
+      className="flex flex-row hover:shadow-lg hover:rounded-lg p-2.5 cursor-pointer transition duration-300 hover:delay-150"
+      onClick={() => onClick(id)}
+    >
       <img
         className="object-cover object-center w-24 mr-2.5 rounded-lg"
+        alt="Imagem da loja"
         src={image}
       />
       <div className="space-y-2 self-center">

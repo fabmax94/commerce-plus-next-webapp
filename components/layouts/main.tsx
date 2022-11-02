@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import Head from "next/head";
-import { BsPersonCircle } from "react-icons/bs";
+import { BsPerson } from "react-icons/bs";
 import { ContextAuth } from "../../contexts/auth";
 import { useRouter } from "next/router";
 
@@ -9,7 +9,7 @@ type Props = {
   title?: string;
 };
 
-const Main = ({ children, title = "This is the default title" }: Props) => {
+const Main = ({ children, title = "Commerce Plus" }: Props) => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const { token, logOut } = useContext(ContextAuth);
   const [selectedItem, setSelectedItem] = useState("");
@@ -67,7 +67,8 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
     );
   };
 
-  const checkSelectedItem = (item) => item === selectedItem && "text-red-500";
+  const checkSelectedItem = (item) =>
+    item === selectedItem ? "text-red-500" : "text-gray-500";
 
   return (
     <div>
@@ -96,7 +97,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
                     <div className="ml-10 flex items-baseline space-x-4">
                       <a
                         href="/companies"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies"
                         )}`}
                       >
@@ -105,7 +106,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
 
                       <a
                         href="/companies?type=restaurant"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies?type=restaurant"
                         )}`}
                       >
@@ -114,7 +115,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
 
                       <a
                         href="/companies?type=market"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies?type=market"
                         )}`}
                       >
@@ -123,7 +124,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
 
                       <a
                         href="/companies?type=beer"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies?type=beer"
                         )}`}
                       >
@@ -132,7 +133,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
 
                       <a
                         href="/companies?type=chemistry"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies?type=chemistry"
                         )}`}
                       >
@@ -140,7 +141,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
                       </a>
                       <a
                         href="/companies?type=pets"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies?type=pets"
                         )}`}
                       >
@@ -148,7 +149,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
                       </a>
                       <a
                         href="/companies?type=shopping"
-                        className={`text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                        className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
                           "/companies?type=shopping"
                         )}`}
                       >
@@ -159,7 +160,7 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
                 </div>
                 <div className="ml-4 flex items-center md:ml-6">
                   <div className="relative ml-3">
-                    <BsPersonCircle
+                    <BsPerson
                       onClick={() => setOpenMenu((open) => !open)}
                       size={30}
                       className="text-red-500 cursor-pointer"
@@ -183,49 +184,61 @@ const Main = ({ children, title = "This is the default title" }: Props) => {
             <div className="md:hidden" id="mobile-menu">
               <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3 overflow-x-auto">
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
-                  aria-current="page"
+                  href="/companies"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies"
+                  )}`}
                 >
                   Início
                 </a>
-
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
+                  href="/companies?type=restaurant"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies?type=restaurant"
+                  )}`}
                 >
                   Restaurantes
                 </a>
 
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
+                  href="/companies?type=market"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies?type=market"
+                  )}`}
                 >
                   Mercados
                 </a>
 
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
+                  href="/companies?type=beer"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies?type=beer"
+                  )}`}
                 >
                   Bebidas
                 </a>
 
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
+                  href="/companies?type=chemistry"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies?type=chemistry"
+                  )}`}
                 >
                   Farmácias
                 </a>
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
+                  href="/companies?type=pets"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies?type=pets"
+                  )}`}
                 >
                   Pets
                 </a>
                 <a
-                  href="components/layouts/main#"
-                  className="text-gray-500 hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium"
+                  href="/companies?type=shopping"
+                  className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
+                    "/companies?type=shopping"
+                  )}`}
                 >
                   Shopping
                 </a>
