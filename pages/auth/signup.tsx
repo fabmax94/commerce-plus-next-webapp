@@ -1,17 +1,11 @@
 import { usePush } from "../../hooks/push";
 import React, { useContext, useEffect, useState } from "react";
 import { ContextLayout } from "../../contexts/layout";
-
-interface SigInFormType {
-  name: string;
-  password: string;
-  address: string;
-  email: string;
-}
+import { User } from "../../interfaces/user";
 
 const SingUp = () => {
   const { pushData } = usePush("auth/signup");
-  const [user, setUser] = useState<SigInFormType>();
+  const [user, setUser] = useState<User>();
   const { setTitle } = useContext(ContextLayout);
 
   useEffect(() => setTitle("Cadastre-se"), []);

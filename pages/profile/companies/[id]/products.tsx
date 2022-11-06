@@ -6,21 +6,8 @@ import { Modal } from "../../../../components/modal";
 import { ProductForm } from "../../../../components/products/product-form";
 import { usePush } from "../../../../hooks/push";
 import { ProductAdminListDetail } from "../../../../components/products/product-admin-list-detail";
-
-interface Company {
-  id: number;
-  name: string;
-}
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  size: number;
-  description: string;
-  image: string;
-  isInactive: boolean;
-}
+import { Product } from "../../../../interfaces/product";
+import { Company } from "../../../../interfaces/company";
 
 const filterCssSelected =
   "rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 mr-2 py-2 px-8 bg-indigo-100 text-indigo-700 rounded-full";
@@ -51,7 +38,6 @@ const MyProducts = () => {
       companyId: query.id,
     });
     setOpen(false);
-    setSelectedProduct(null);
     await reValidate();
   };
 
@@ -102,7 +88,10 @@ const MyProducts = () => {
             </button>
           </div>
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setOpen(true);
+              setSelectedProduct(null);
+            }}
             className="focus:ring-2 focus:ring-offset-2 focus:ring-red-600 mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-red-700 hover:bg-red-600 focus:outline-none rounded text-sm font-medium leading-none text-white cursor-pointer"
           >
             Adicionar Poduto

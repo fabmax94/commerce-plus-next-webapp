@@ -1,12 +1,10 @@
-import { GrMoney } from "react-icons/gr";
-import { AiOutlineClose, AiOutlineNumber } from "react-icons/ai";
-import React, { ChangeEvent, useState } from "react";
-import { BiErrorAlt } from "react-icons/bi";
-import { Product } from "../../interfaces/product";
+import { BiCurrentLocation } from "react-icons/bi";
+import { ChangeEvent, useState } from "react";
+import { Company } from "../../interfaces/company";
 
-type ProductFormProps = {
-  handleSave: (e: Product) => void;
-  initProduct?: Product;
+type CompanyFormProps = {
+  handleSave: (e: Company) => void;
+  initCompany?: Company;
 };
 
 const toBase64 = (file) =>
@@ -17,28 +15,14 @@ const toBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-export const ProductForm = ({
+export const CompanyForm = ({
   handleSave,
-  initProduct = null,
-}: ProductFormProps) => {
-  const [product, setProduct] = useState<Product>(initProduct);
-  const [errorMessage, setErrorMessage] = useState<string>("");
-  const handleChangeForm = (key, value) => {
-    setProduct({ ...product, [key]: value });
-  };
+  initCompany = null,
+}: CompanyFormProps) => {
+  const [company, setCompany] = useState<Company>(initCompany);
 
-  const handleClick = async () => {
-    if (
-      product?.name &&
-      product?.description &&
-      product?.image &&
-      product?.price &&
-      product?.size
-    ) {
-      await handleSave(product);
-    } else {
-      setErrorMessage("Preencha todos os campos corretamente");
-    }
+  const handleChangeForm = (key, value) => {
+    setCompany({ ...company, [key]: value });
   };
 
   return (
@@ -59,7 +43,7 @@ export const ProductForm = ({
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     handleChangeForm("name", e.target.value)
                   }
-                  value={product?.name}
+                  value={company?.name}
                   className="block w-full flex-1 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
@@ -69,20 +53,20 @@ export const ProductForm = ({
                 htmlFor="company-website"
                 className="block text-sm font-medium text-gray-700"
               >
-                Preço
+                Tipo de loja
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
-                <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                  <GrMoney />
-                </span>
-                <input
-                  type="number"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleChangeForm("price", e.target.value)
+                <select
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    handleChangeForm("type", e.target.value)
                   }
-                  value={product?.price}
-                  className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
+                  value={company?.type}
+                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                >
+                  <option value="Restaurant">Restaurante</option>
+                  <option value="Pharmacy">Farmácia</option>
+                  <option value="Market">Mercado</option>
+                </select>
               </div>
             </div>
             <div>
@@ -90,20 +74,19 @@ export const ProductForm = ({
                 htmlFor="company-website"
                 className="block text-sm font-medium text-gray-700"
               >
-                Tamanho
+                Categoria da loja
               </label>
               <div className="mt-1 flex rounded-md shadow-sm">
-                <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                  <AiOutlineNumber />
-                </span>
-                <input
-                  type="number"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleChangeForm("size", e.target.value)
+                <select
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    handleChangeForm("subType", e.target.value)
                   }
-                  value={product?.size}
-                  className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
+                  value={company?.subType}
+                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                >
+                  <option value="Meet">Carne</option>
+                  <option value="Chinese">Chinês</option>
+                </select>
               </div>
             </div>
             <div>
@@ -111,16 +94,19 @@ export const ProductForm = ({
                 htmlFor="company-website"
                 className="block text-sm font-medium text-gray-700"
               >
-                Descrição
+                Endereço
               </label>
-              <div className="mt-1">
-                <textarea
-                  onChange={(e) =>
-                    handleChangeForm("description", e.target.value)
+              <div className="mt-1 flex rounded-md shadow-sm">
+                <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+                  <BiCurrentLocation />
+                </span>
+                <input
+                  type="text"
+                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    handleChangeForm("location", e.target.value)
                   }
-                  value={product?.description}
-                  rows={3}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2 border"
+                  value={company?.location}
+                  className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                 />
               </div>
             </div>
@@ -130,11 +116,11 @@ export const ProductForm = ({
               </label>
               <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                 <div className="space-y-1 text-center flex flex-col items-center">
-                  {product?.image ? (
+                  {company?.image ? (
                     <img
-                      alt="Imagem do produto"
+                      alt="Imagem da loja"
                       className="object-cover object-center w-24 rounded-lg"
-                      src={product?.image}
+                      src={company?.image}
                     />
                   ) : (
                     <svg
@@ -182,21 +168,10 @@ export const ProductForm = ({
           </div>
         </div>
       </div>
-      {errorMessage && (
-        <div className="flex items-center px-6 py-4 text-red-700 bg-red-100 rounded">
-          <BiErrorAlt size={22} />
-          <p className="ml-2 text-medium flex-1">{errorMessage}</p>
-          <AiOutlineClose
-            onClick={() => setErrorMessage("")}
-            className="cursor-pointer"
-            size={20}
-          />
-        </div>
-      )}
       <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
         <button
           type="button"
-          onClick={handleClick}
+          onClick={() => handleSave(company)}
           className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Salvar

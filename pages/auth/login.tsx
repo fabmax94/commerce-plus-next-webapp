@@ -6,10 +6,11 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { ContextLayout } from "../../contexts/layout";
 
-type LogInFormType = {
+interface LogInFormType {
   password: string;
   username: string;
-};
+}
+
 const LogIn = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const router = useRouter();
@@ -24,8 +25,8 @@ const LogIn = () => {
     const response: { statusCode: number; access_token: string } =
       await pushData(user);
     if (response.statusCode !== 401) {
-      logIn(response.access_token);
-      await router.push("/companies");
+      logIn(`Bearer ${response.access_token}`);
+      await router.push("/companies/home");
     } else {
       setErrorMessage("E-mail ou senha inválido");
     }

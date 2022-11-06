@@ -1,11 +1,4 @@
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  size: number;
-  description: string;
-  image: string;
-}
+import { Product } from "../../interfaces/product";
 
 interface ProductListDetailParam {
   product: Product;

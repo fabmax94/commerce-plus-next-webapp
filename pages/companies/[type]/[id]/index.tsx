@@ -4,27 +4,10 @@ import { useFetch } from "../../../../hooks/fetch";
 import { ContextLayout } from "../../../../contexts/layout";
 import { AiFillStar } from "react-icons/ai";
 import ProductListDetail from "../../../../components/products/product-list-detail";
+import { Product } from "../../../../interfaces/product";
+import { Company } from "../../../../interfaces/company";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  size: number;
-  description: string;
-  image: string;
-}
-
-interface Company {
-  id: number;
-  name: string;
-  subType: string;
-  type: string;
-  location: string;
-  image: string;
-  averageRate: number;
-}
-
-const Company = () => {
+const CompanyDetail = () => {
   const { query } = useRouter();
   const { data: company } = useFetch<Company>(`companies/${query.id}`);
   const { data: products } = useFetch<Product[]>(
@@ -61,4 +44,4 @@ const Company = () => {
     </div>
   );
 };
-export default Company;
+export default CompanyDetail;

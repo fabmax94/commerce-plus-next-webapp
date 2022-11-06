@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 const ContextAuth = React.createContext(null);
 
 const ContextAuthProvider = ({ children }) => {
   const [token, setToken] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const logIn = (data) => {
-    localStorage.setItem("token", data);
+    setCookie("token", data, { path: "/" });
     setToken(data);
   };
 
   const logOut = () => {
-    localStorage.removeItem("token");
+    removeCookie("token");
     setToken("");
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
+    if (cookies.token) {
+      setToken(cookies.token);
     }
   }, []);
 

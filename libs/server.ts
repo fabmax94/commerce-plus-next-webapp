@@ -8,23 +8,16 @@ const server = axios.create({
 });
 
 const getAuthorization = (config) => {
-  if (config.cookie) {
-    const cookie = config.cookie
-      .split(";")
-      .filter((cookie) => cookie.includes("Authorization"));
-
-    const contentType = config["Content-Type"]
-      ? { "Content-Type": config["Content-Type"] }
-      : {};
-    return (
-      cookie.length && {
-        headers: {
-          Authorization: cookie[0].split("=")[1].replace("%20", " "),
-          ...contentType,
-        },
-      }
-    );
-  }
+  return (
+    config.token && {
+      headers: {
+        Authorization: config.token,
+        ...(config["Content-Type"]
+          ? { "Content-Type": config["Content-Type"] }
+          : {}),
+      },
+    }
+  );
 };
 
 const get = (uri, config = {}) => {
@@ -32,6 +25,7 @@ const get = (uri, config = {}) => {
 };
 
 const post = (uri, data, config = {}) => {
+  console.log(getAuthorization(config));
   return server.post(uri, data, getAuthorization(config));
 };
 

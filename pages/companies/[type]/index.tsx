@@ -3,16 +3,7 @@ import CompanyListDetail from "../../../components/companies/company-list-detail
 import { useContext, useEffect } from "react";
 import { ContextLayout } from "../../../contexts/layout";
 import { useRouter } from "next/router";
-
-interface Company {
-  id: number;
-  name: string;
-  subType: string;
-  type: string;
-  location: string;
-  image: string;
-  averageRate: number;
-}
+import { Company } from "../../../interfaces/company";
 
 const Companies = () => {
   const { data: companies } = useFetch<Array<Company>>("companies");

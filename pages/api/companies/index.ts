@@ -5,7 +5,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     let response;
     if (_req.method === "POST") {
-      response = await post("companies", _req.body);
+      response = await post("companies", _req.body, _req.cookies);
     } else {
       response = await get("companies");
     }
