@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const HOST = `http://${
+const HOST = `https://${
   typeof window !== "undefined" ? window.location.host : "localhost:3001"
 }/api`;
 
