@@ -1,11 +1,7 @@
 import axios from "axios";
-import { SERVER_HOST } from "../constants";
-
-const BASE_HOST = SERVER_HOST;
-const HOST = `${BASE_HOST}/api`;
 
 const server = axios.create({
-  baseURL: BASE_HOST,
+  baseURL: process.env.SERVER_HOST,
   validateStatus: function () {
     return true;
   },
@@ -43,4 +39,4 @@ const put = (uri, data, config = {}) => {
   return server.patch(uri, data, getAuthorization(config));
 };
 
-export { get, post, put, server, BASE_HOST, HOST };
+export { get, post, put, server };

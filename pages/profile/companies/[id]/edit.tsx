@@ -19,7 +19,7 @@ interface Company {
 const EditCompany = () => {
   const { query } = useRouter();
   const { data: company } = useFetch<Company>(`companies/${query.id}`);
-  const { pushData } = usePush(`companies/${query.id}/edit`, "PUT");
+  const { pushData } = usePush(`companies/${query.id}`, "PUT");
 
   const handleSave = async (company: CompanyFormType) => {
     await pushData(company);

@@ -7,7 +7,7 @@ const IndexPage = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   useEffect(async () => {
-    await router.push("/companies");
+    await router.push("/companies/home");
   }, []);
 
   return null;

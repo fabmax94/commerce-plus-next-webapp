@@ -237,9 +237,12 @@ const MyCompanies = () => {
                       </div>
                     </td>
                     <td>
-                      <button className="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none mr-2">
+                      <a
+                        href={`/profile/companies/${company.id}/products`}
+                        className="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none mr-2"
+                      >
                         Alterar Produtos
-                      </button>
+                      </a>
                       <a
                         href={`/profile/companies/${company.id}/edit`}
                         className="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"

@@ -1,7 +1,7 @@
-import { useFetch } from "../../hooks/fetch";
-import CompanyListDetail from "../../components/companies/company-list-detail";
+import { useFetch } from "../../../hooks/fetch";
+import CompanyListDetail from "../../../components/companies/company-list-detail";
 import { useContext, useEffect } from "react";
-import { ContextLayout } from "../../contexts/layout";
+import { ContextLayout } from "../../../contexts/layout";
 import { useRouter } from "next/router";
 
 interface Company {
@@ -18,11 +18,12 @@ const Companies = () => {
   const { data: companies } = useFetch<Array<Company>>("companies");
   const { setTitle } = useContext(ContextLayout);
   const router = useRouter();
+  const { type } = router.query;
 
   useEffect(() => setTitle("Lojas"), []);
 
   const onClick = async (id: number) => {
-    await router.push(`/companies/${id}`);
+    await router.push(`/companies/${type}/${id}`);
   };
 
   return (

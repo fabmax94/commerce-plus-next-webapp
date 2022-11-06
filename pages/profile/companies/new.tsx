@@ -5,7 +5,7 @@ import {
 } from "../../../components/companies/form";
 
 const CreateCompany = () => {
-  const { pushData } = usePush("companies/new");
+  const { pushData } = usePush("companies");
 
   const handleSave = async (company: CompanyFormType) => {
     await pushData(company);

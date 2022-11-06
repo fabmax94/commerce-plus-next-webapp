@@ -14,7 +14,7 @@ interface ProductListDetailParam {
 const ProductListDetail = ({ product }: ProductListDetailParam) => {
   const { name, description, price, image } = product;
   return (
-    <div className="flex flex-row hover:shadow-lg hover:rounded-lg p-2.5 cursor-pointer transition duration-300 hover:delay-150">
+    <div className="flex flex-row hover:shadow-lg hover:rounded-lg p-2.5 cursor-pointer transition duration-300 hover:delay-150 shadow-md border border-gray-300">
       <div className="flex flex-col flex-1">
         <h3 className="text-lg mb-3">{name}</h3>
         <span className="text-sm font-light text-zinc-500 mb-5">

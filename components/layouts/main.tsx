@@ -4,12 +4,12 @@ import { BsPerson } from "react-icons/bs";
 import { ContextAuth } from "../../contexts/auth";
 import { useRouter } from "next/router";
 
-type Props = {
+type MainProps = {
   children?: ReactNode;
   title?: string;
 };
 
-const Main = ({ children, title = "Commerce Plus" }: Props) => {
+const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const { token, logOut } = useContext(ContextAuth);
   const [selectedItem, setSelectedItem] = useState("");
@@ -24,6 +24,9 @@ const Main = ({ children, title = "Commerce Plus" }: Props) => {
     setOpenMenu(false);
     await router.push("/companies");
   };
+
+  const checkSelectedItem = (item) =>
+    selectedItem.includes(item) ? "text-red-500" : "text-gray-500";
 
   const renderMenu = () => {
     return token ? (
@@ -46,7 +49,7 @@ const Main = ({ children, title = "Commerce Plus" }: Props) => {
         </a>
 
         <a
-          href="/companies"
+          href="/companies/[type]"
           onClick={handleClickLogOut}
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           role="menuitem"
@@ -66,9 +69,6 @@ const Main = ({ children, title = "Commerce Plus" }: Props) => {
       </a>
     );
   };
-
-  const checkSelectedItem = (item) =>
-    item === selectedItem ? "text-red-500" : "text-gray-500";
 
   return (
     <div>
@@ -96,61 +96,61 @@ const Main = ({ children, title = "Commerce Plus" }: Props) => {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       <a
-                        href="/companies"
+                        href="/companies/home"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies"
+                          "/companies/home"
                         )}`}
                       >
                         Início
                       </a>
 
                       <a
-                        href="/companies?type=restaurant"
+                        href="/companies/restaurant"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies?type=restaurant"
+                          "/companies/restaurant"
                         )}`}
                       >
                         Restaurantes
                       </a>
 
                       <a
-                        href="/companies?type=market"
+                        href="/companies/market"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies?type=market"
+                          "/companies/market"
                         )}`}
                       >
                         Mercados
                       </a>
 
                       <a
-                        href="/companies?type=beer"
+                        href="/companies/beer"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies?type=beer"
+                          "/companies/beer"
                         )}`}
                       >
                         Bebidas
                       </a>
 
                       <a
-                        href="/companies?type=chemistry"
+                        href="/companies/chemistry"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies?type=chemistry"
+                          "/companies/chemistry"
                         )}`}
                       >
                         Farmácias
                       </a>
                       <a
-                        href="/companies?type=pets"
+                        href="/companies/pets"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies?type=pets"
+                          "/companies/pets"
                         )}`}
                       >
                         Pets
                       </a>
                       <a
-                        href="/companies?type=shopping"
+                        href="/companies/shopping"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies?type=shopping"
+                          "/companies/shopping"
                         )}`}
                       >
                         Shopping
@@ -184,60 +184,60 @@ const Main = ({ children, title = "Commerce Plus" }: Props) => {
             <div className="md:hidden" id="mobile-menu">
               <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3 overflow-x-auto">
                 <a
-                  href="/companies"
+                  href="/companies/home"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies"
+                    "/companies/home"
                   )}`}
                 >
                   Início
                 </a>
                 <a
-                  href="/companies?type=restaurant"
+                  href="/companies/restaurant"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies?type=restaurant"
+                    "/companies/restaurant"
                   )}`}
                 >
                   Restaurantes
                 </a>
 
                 <a
-                  href="/companies?type=market"
+                  href="/companies/market"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies?type=market"
+                    "/companies/market"
                   )}`}
                 >
                   Mercados
                 </a>
 
                 <a
-                  href="/companies?type=beer"
+                  href="/companies/beer"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies?type=beer"
+                    "/companies/beer"
                   )}`}
                 >
                   Bebidas
                 </a>
 
                 <a
-                  href="/companies?type=chemistry"
+                  href="/companies/chemistry"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies?type=chemistry"
+                    "/companies/chemistry"
                   )}`}
                 >
                   Farmácias
                 </a>
                 <a
-                  href="/companies?type=pets"
+                  href="/companies/pets"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies?type=pets"
+                    "/companies/pets"
                   )}`}
                 >
                   Pets
                 </a>
                 <a
-                  href="/companies?type=shopping"
+                  href="/companies/shopping"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies?type=shopping"
+                    "/companies/shopping"
                   )}`}
                 >
                   Shopping

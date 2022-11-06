@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useFetch } from "../../../hooks/fetch";
-import { ContextLayout } from "../../../contexts/layout";
+import { useFetch } from "../../../../hooks/fetch";
+import { ContextLayout } from "../../../../contexts/layout";
 import { AiFillStar } from "react-icons/ai";
-import ProductListDetail from "../../../components/products/product-list-detail";
+import ProductListDetail from "../../../../components/products/product-list-detail";
 
 interface Product {
   id: number;

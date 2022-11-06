@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { get } from "../../../../libs/server";
+import { get, put } from "../../../../libs/server";
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = _req.query;
-    const response = await get(`companies/${id}`);
+    let response;
+    if (_req.method === "PUT") {
+      response = await put(`companies/${id}`, _req.body);
+    } else {
+      response = await get(`companies/${id}`);
+    }
 
     res.status(200).json(response.data);
   } catch (err: any) {
