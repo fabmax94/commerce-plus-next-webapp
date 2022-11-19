@@ -7,19 +7,30 @@ import { Modal } from "../../../components/modal";
 import { CompanyForm } from "../../../components/companies/company-form";
 import { usePush } from "../../../hooks/push";
 import { CgTemplate } from "react-icons/cg";
-import { Company } from "../../../interfaces/company";
+import { Company, SubType, Type } from "../../../interfaces/company";
 
 const MyCompanies = () => {
-  const { data: companies, reValidate } = useFetch<Array<Company>>("companies");
-  const { pushData } = usePush("companies");
+  const { data: companies, reValidate } = useFetch<Array<Company>>(
+    "companies/my-companies"
+  );
   const [open, setOpen] = useState<boolean>(false);
   const [selectedCompany, setSelectedCompany] = useState<Company>(null);
   const { setTitle } = useContext(ContextLayout);
+  const { pushData } = usePush(
+    `companies/${selectedCompany?.id || ""}`,
+    selectedCompany ? "PUT" : "POST"
+  );
 
   useEffect(() => setTitle("Lojas"), []);
 
   const handleSave = async (company: Company) => {
-    await pushData(company);
+    await pushData({
+      name: company.name,
+      location: company.location,
+      image: company.image,
+      type: company.type,
+      subType: company.subType,
+    });
     setOpen(false);
     await reValidate();
   };
@@ -68,7 +79,7 @@ const MyCompanies = () => {
                       <div className="flex items-center">
                         <FaStoreAlt />
                         <p className="text-sm leading-none text-gray-600 ml-2">
-                          {company.type}
+                          {Type[company.type]}
                         </p>
                       </div>
                     </td>
@@ -76,7 +87,7 @@ const MyCompanies = () => {
                       <div className="flex items-center">
                         <CgTemplate />
                         <p className="text-sm leading-none text-gray-600 ml-2">
-                          {company.subType}
+                          {SubType[company.subType]}
                         </p>
                       </div>
                     </td>
@@ -114,6 +125,11 @@ const MyCompanies = () => {
             </tbody>
           </table>
         </div>
+        {companies?.length === 0 && (
+          <span className="text-base font-medium leading-none text-gray-700 m-auto mt-10 flex justify-center">
+            Nenhuma loja encontrada
+          </span>
+        )}
       </div>
       <Modal open={open} setOpen={setOpen}>
         <CompanyForm handleSave={handleSave} initCompany={selectedCompany} />

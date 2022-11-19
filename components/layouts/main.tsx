@@ -78,7 +78,7 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="min-h-full">
-        {!["Entrar", "Cadastrar-se"].includes(title) && (
+        {!["Entrar", "Cadastre-se"].includes(title) && (
           <nav className="bg-white">
             <div className="mx-auto border-b-gray-200 border px-4 sm:px-6 lg:px-8">
               <div className="flex h-16 items-center justify-between">
@@ -132,9 +132,9 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
                       </a>
 
                       <a
-                        href="/companies/chemistry"
+                        href="/companies/pharmacy"
                         className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                          "/companies/chemistry"
+                          "/companies/pharmacy"
                         )}`}
                       >
                         Farmácias
@@ -219,9 +219,9 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
                 </a>
 
                 <a
-                  href="/companies/chemistry"
+                  href="/companies/pharmacy"
                   className={`hover:text-red-500 px-3 py-2 rounded-md text-xs font-medium ${checkSelectedItem(
-                    "/companies/chemistry"
+                    "/companies/pharmacy"
                   )}`}
                 >
                   Farmácias

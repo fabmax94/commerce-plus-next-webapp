@@ -2,16 +2,19 @@ import { usePush } from "../../hooks/push";
 import React, { useContext, useEffect, useState } from "react";
 import { ContextLayout } from "../../contexts/layout";
 import { User } from "../../interfaces/user";
+import { useRouter } from "next/router";
 
 const SingUp = () => {
   const { pushData } = usePush("auth/signup");
   const [user, setUser] = useState<User>();
   const { setTitle } = useContext(ContextLayout);
+  const router = useRouter();
 
   useEffect(() => setTitle("Cadastre-se"), []);
 
   const handleSave = async () => {
     await pushData(user);
+    await router.push("/auth/login");
   };
 
   const handleChangeForm = (key: string, value: string) => {

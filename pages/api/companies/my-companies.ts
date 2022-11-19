@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { post } from "../../../libs/server";
+import { get } from "../../../libs/server";
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const response = await post(`products`, _req.body);
+    const response = await get("companies/my-companies", _req.cookies);
 
     res.status(200).json(response.data);
   } catch (err: any) {

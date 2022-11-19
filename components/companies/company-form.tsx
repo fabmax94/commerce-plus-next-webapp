@@ -1,6 +1,6 @@
 import { BiCurrentLocation } from "react-icons/bi";
 import { ChangeEvent, useState } from "react";
-import { Company } from "../../interfaces/company";
+import { Company, SubType, Type } from "../../interfaces/company";
 
 type CompanyFormProps = {
   handleSave: (e: Company) => void;
@@ -63,9 +63,9 @@ export const CompanyForm = ({
                   value={company?.type}
                   className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 >
-                  <option value="Restaurant">Restaurante</option>
-                  <option value="Pharmacy">Farmácia</option>
-                  <option value="Market">Mercado</option>
+                  {Object.entries(Type).map((item) => (
+                    <option value={item[0]}>{item[1]}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -84,8 +84,9 @@ export const CompanyForm = ({
                   value={company?.subType}
                   className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 >
-                  <option value="Meet">Carne</option>
-                  <option value="Chinese">Chinês</option>
+                  {Object.entries(SubType).map((item) => (
+                    <option value={item[0]}>{item[1]}</option>
+                  ))}
                 </select>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { ContextLayout } from "../../../../contexts/layout";
 import { AiFillStar } from "react-icons/ai";
 import ProductListDetail from "../../../../components/products/product-list-detail";
 import { Product } from "../../../../interfaces/product";
-import { Company } from "../../../../interfaces/company";
+import { Company, SubType, Type } from "../../../../interfaces/company";
 
 const CompanyDetail = () => {
   const { query } = useRouter();
@@ -30,12 +30,25 @@ const CompanyDetail = () => {
           src={company.image}
         />
         <h1 className="text-4xl">{company.name}</h1>
-        <span className="text-orange-500 ml-4">
-          <AiFillStar style={{ display: "inline" }} className="mr-1" />
-          {company.averageRate}
-        </span>
+        <div className="flex flex-row text-sm text-slate-500 font-light space-x-1 ml-5">
+          <span className="text-orange-500">
+            <AiFillStar style={{ display: "inline" }} className="mr-1" />
+            {company.averageRate}
+          </span>
+          <span>•</span>
+          <span>R${company.averagePrice}</span>
+          <span>•</span>
+          <span>{Type[company.type]}</span>
+          <span>•</span>
+          <span>{SubType[company.subType]}</span>
+        </div>
       </div>
 
+      {products?.length === 0 && (
+        <span className="text-base font-medium leading-none text-gray-700 m-auto mt-10">
+          Nenhum produto encontrado
+        </span>
+      )}
       <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-4 mt-10">
         {products?.map((product) => (
           <ProductListDetail product={product} />

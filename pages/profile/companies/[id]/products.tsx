@@ -20,11 +20,14 @@ const MyProducts = () => {
   const { data: products, reValidate } = useFetch<Product[]>(
     `companies/${query.id}/products`
   );
-  const { pushData } = usePush("products");
   const [open, setOpen] = useState<boolean>(false);
   const [filter, setFilter] = useState<boolean | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product>(null);
   const { setTitle } = useContext(ContextLayout);
+  const { pushData } = usePush(
+    `products/${selectedProduct?.id || ""}`,
+    selectedProduct ? "PUT" : "POST"
+  );
 
   useEffect(() => setTitle("Lojas"), []);
 
@@ -111,6 +114,11 @@ const MyProducts = () => {
             </tbody>
           </table>
         </div>
+        {products?.length === 0 && (
+          <span className="text-base font-medium leading-none text-gray-700 m-auto mt-10 flex justify-center">
+            Nenhum produto encontrado
+          </span>
+        )}
       </div>
       <Modal open={open} setOpen={setOpen}>
         <ProductForm handleSave={handleSave} initProduct={selectedProduct} />

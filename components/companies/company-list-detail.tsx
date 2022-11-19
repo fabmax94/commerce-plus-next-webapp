@@ -1,11 +1,14 @@
 import { AiFillStar } from "react-icons/ai";
+import { SubType, Type } from "../../interfaces/company";
 
 const CompanyListDetail = ({
   id,
   image,
   name,
+  type,
   subType,
   averageRate,
+  averagePrice,
   onClick,
 }) => {
   return (
@@ -28,14 +31,12 @@ const CompanyListDetail = ({
             {averageRate}
           </span>
           <span>•</span>
-          <span>{subType}</span>
-          <span>•</span>
-          <span>3.9 km</span>
+          <span>R${averagePrice}</span>
         </div>
         <div className="flex flex-row text-sm text-slate-500 font-light space-x-1">
-          <span>43-53 min</span>
+          <span>{Type[type]}</span>
           <span>•</span>
-          <span>R$9,99</span>
+          <span>{SubType[subType]}</span>
         </div>
       </div>
     </div>
