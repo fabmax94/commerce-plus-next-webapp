@@ -22,7 +22,7 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
   const handleClickLogOut = async () => {
     logOut();
     setOpenMenu(false);
-    await router.push("/companies");
+    await router.push("/");
   };
 
   const checkSelectedItem = (item) =>
@@ -35,7 +35,6 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
           href="components/layouts/main#"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           role="menuitem"
-          id="user-menu-item-0"
         >
           Meu Perfil
         </a>
@@ -43,17 +42,15 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
           href="/profile/companies"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           role="menuitem"
-          id="user-menu-item-0"
         >
           Minhas Lojas
         </a>
 
         <a
-          href="/companies/[type]"
+          href="#"
           onClick={handleClickLogOut}
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           role="menuitem"
-          id="user-menu-item-2"
         >
           Sair
         </a>
@@ -63,7 +60,6 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
         href="/auth/login"
         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
         role="menuitem"
-        id="user-menu-item-2"
       >
         Entrar
       </a>
@@ -181,7 +177,7 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
               </div>
             </div>
 
-            <div className="md:hidden" id="mobile-menu">
+            <div className="md:hidden">
               <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3 overflow-x-auto">
                 <a
                   href="/companies/home"
