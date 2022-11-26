@@ -17,8 +17,8 @@ const MyCompanies = () => {
   const [selectedCompany, setSelectedCompany] = useState<Company>(null);
   const { setTitle } = useContext(ContextLayout);
   const { pushData } = usePush(
-    selectedCompany ? "companies" : `companies/${selectedCompany?.id}`,
-    selectedCompany ? "PUT" : "POST"
+    selectedCompany?.id ? "companies" : `companies/${selectedCompany?.id}`,
+    selectedCompany?.id ? "PUT" : "POST"
   );
 
   useEffect(() => setTitle("Lojas"), []);
