@@ -25,7 +25,7 @@ const MyProducts = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product>(null);
   const { setTitle } = useContext(ContextLayout);
   const { pushData } = usePush(
-    `products/${selectedProduct?.id || ""}`,
+    selectedProduct ? "products" : `products/${selectedProduct?.id}`,
     selectedProduct ? "PUT" : "POST"
   );
 

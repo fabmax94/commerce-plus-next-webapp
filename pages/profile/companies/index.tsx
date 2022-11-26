@@ -17,7 +17,7 @@ const MyCompanies = () => {
   const [selectedCompany, setSelectedCompany] = useState<Company>(null);
   const { setTitle } = useContext(ContextLayout);
   const { pushData } = usePush(
-    `companies/${selectedCompany?.id || ""}`,
+    selectedCompany ? "companies" : `companies/${selectedCompany?.id}`,
     selectedCompany ? "PUT" : "POST"
   );
 
