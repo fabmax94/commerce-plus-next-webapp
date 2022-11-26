@@ -33,7 +33,7 @@ export const ProductDetail = ({ product, owner }: ProductDetailParam) => {
       <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
         <a
           target="_blank"
-          href={`https://api.whatsapp.com/send?phone=${owner.phone}&text=Olá, mei interesse pelo produto ${product.name} e gostaria de comprá-lo`}
+          href={`https://api.whatsapp.com/send?phone=${owner.phone}&text=Olá, me interessei pelo produto ${product.name} e gostaria de comprá-lo.`}
           className="inline-flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         >
           Comprar

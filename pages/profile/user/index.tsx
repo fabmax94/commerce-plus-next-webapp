@@ -23,7 +23,7 @@ const Profile = () => {
   const handleSave = async () => {
     const newUser = await pushData(user);
     updateProfile(newUser);
-    router.reload();
+    await router.push("/");
   };
   return (
     <>
