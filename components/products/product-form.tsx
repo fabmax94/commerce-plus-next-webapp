@@ -3,10 +3,13 @@ import { AiOutlineClose, AiOutlineNumber } from "react-icons/ai";
 import React, { ChangeEvent, useState } from "react";
 import { BiErrorAlt } from "react-icons/bi";
 import { Product } from "../../interfaces/product";
+import Compressor from "compressorjs";
+import { FaSpinner } from "react-icons/fa";
 
 type ProductFormProps = {
   handleSave: (e: Product) => void;
   initProduct?: Product;
+  isSaving: boolean;
 };
 
 const toBase64 = (file) =>
@@ -20,11 +23,23 @@ const toBase64 = (file) =>
 export const ProductForm = ({
   handleSave,
   initProduct = null,
+  isSaving,
 }: ProductFormProps) => {
   const [product, setProduct] = useState<Product>(initProduct);
   const [errorMessage, setErrorMessage] = useState<string>("");
   const handleChangeForm = (key, value) => {
     setProduct({ ...product, [key]: value });
+  };
+
+  const handleCompressedUpload = (e) => {
+    const image = e.target.files[0];
+    new Compressor(image, {
+      quality: 0.4,
+      success: async (compressedResult) => {
+        const fileBase64 = await toBase64(compressedResult);
+        handleChangeForm("image", fileBase64);
+      },
+    });
   };
 
   const handleClick = async () => {
@@ -162,11 +177,7 @@ export const ProductForm = ({
                       <input
                         id="file-upload"
                         name="file-upload"
-                        onChange={async (e) => {
-                          const file = e.target.files[0];
-                          const fileBase64 = await toBase64(file);
-                          handleChangeForm("image", fileBase64);
-                        }}
+                        onChange={handleCompressedUpload}
                         type="file"
                         className="sr-only"
                       />
@@ -197,8 +208,10 @@ export const ProductForm = ({
         <button
           type="button"
           onClick={handleClick}
-          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          disabled={isSaving}
+          className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 items-center"
         >
+          {isSaving && <FaSpinner className="spinner mr-2" />}
           Salvar
         </button>
       </div>

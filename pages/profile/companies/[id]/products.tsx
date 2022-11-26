@@ -24,7 +24,7 @@ const MyProducts = () => {
   const [filter, setFilter] = useState<boolean | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<Product>(null);
   const { setTitle } = useContext(ContextLayout);
-  const { pushData } = usePush(
+  const { pushData, isLoading } = usePush(
     selectedProduct ? `products/${selectedProduct?.id}` : "products",
     selectedProduct ? "PUT" : "POST"
   );
@@ -64,7 +64,7 @@ const MyProducts = () => {
       </div>
       <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
         <div className="sm:flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center overflow-x-auto h-16 p-1">
             <button
               onClick={() => setFilter(null)}
               className={
@@ -121,7 +121,11 @@ const MyProducts = () => {
         )}
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <ProductForm handleSave={handleSave} initProduct={selectedProduct} />
+        <ProductForm
+          handleSave={handleSave}
+          isSaving={isLoading}
+          initProduct={selectedProduct}
+        />
       </Modal>
     </div>
   );

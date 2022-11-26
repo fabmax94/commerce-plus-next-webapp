@@ -1,6 +1,7 @@
 import { BiCurrentLocation } from "react-icons/bi";
 import { ChangeEvent, useState } from "react";
 import { Company, SubType, Type } from "../../interfaces/company";
+import Compressor from "compressorjs";
 
 type CompanyFormProps = {
   handleSave: (e: Company) => void;
@@ -23,6 +24,17 @@ export const CompanyForm = ({
 
   const handleChangeForm = (key, value) => {
     setCompany({ ...company, [key]: value });
+  };
+
+  const handleCompressedUpload = (e) => {
+    const image = e.target.files[0];
+    new Compressor(image, {
+      quality: 0.4,
+      success: async (compressedResult) => {
+        const fileBase64 = await toBase64(compressedResult);
+        handleChangeForm("image", fileBase64);
+      },
+    });
   };
 
   return (
@@ -149,11 +161,7 @@ export const CompanyForm = ({
                       <input
                         id="file-upload"
                         name="file-upload"
-                        onChange={async (e) => {
-                          const file = e.target.files[0];
-                          const fileBase64 = await toBase64(file);
-                          handleChangeForm("image", fileBase64);
-                        }}
+                        onChange={handleCompressedUpload}
                         type="file"
                         className="sr-only"
                       />
