@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export interface Company {
   id: number;
   name: string;
@@ -7,6 +9,7 @@ export interface Company {
   image: string;
   averageRate: number;
   averagePrice: number;
+  owner: User;
 }
 
 export enum Type {

@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
-const HOST = `http://${
+const HOST = `https://${
   typeof window !== "undefined" ? window.location.host : "localhost:3001"
 }/api`;
 
@@ -11,7 +11,7 @@ const server = axios.create({
   },
 });
 
-const get = (uri, config = {}) => {
+const get = (uri, config = {}): Promise<AxiosResponse> => {
   return server.get(uri, config);
 };
 

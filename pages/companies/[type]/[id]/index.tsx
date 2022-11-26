@@ -61,12 +61,14 @@ const CompanyDetail = () => {
         </span>
       )}
       <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-4 mt-10">
-        {products?.map((product) => (
-          <ProductListDetail onClick={handleClickDetail} product={product} />
-        ))}
+        {products
+          ?.filter((product) => !product.isInactive)
+          ?.map((product) => (
+            <ProductListDetail onClick={handleClickDetail} product={product} />
+          ))}
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <ProductDetail product={selectedProduct} />
+        <ProductDetail product={selectedProduct} owner={company.owner} />
       </Modal>
     </div>
   );

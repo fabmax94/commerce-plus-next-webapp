@@ -32,7 +32,7 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
     return token ? (
       <>
         <a
-          href="components/layouts/main#"
+          href="/profile/user"
           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           role="menuitem"
         >

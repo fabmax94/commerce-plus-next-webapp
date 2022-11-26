@@ -2,7 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { get, post } from "../../../libs/server";
 
 function loadUrl(type: any): string {
-  return type ? `companies?type=${type.toString().toUpperCase()}` : "companies";
+  return type && type !== "undefined"
+    ? `companies?type=${type.toString().toUpperCase()}`
+    : "companies";
 }
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {

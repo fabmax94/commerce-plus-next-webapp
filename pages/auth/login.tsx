@@ -22,10 +22,16 @@ const LogIn = () => {
   useEffect(() => setTitle("Entrar"), []);
 
   const handleSave = async () => {
-    const response: { statusCode: number; access_token: string } =
-      await pushData(user);
+    const response: {
+      statusCode: number;
+      access_token: string;
+      email: string;
+      name: string;
+      address: string;
+      phone: string;
+    } = await pushData(user);
     if (response.statusCode !== 401) {
-      logIn(`Bearer ${response.access_token}`);
+      logIn(response);
       await router.push("/companies/home");
     } else {
       setErrorMessage("E-mail ou senha inválido");
@@ -77,7 +83,7 @@ const LogIn = () => {
           </div>
         </div>
 
-        <div>
+        <div className="space-y-2 flex flex-col">
           <button
             type="submit"
             onClick={handleSave}
@@ -100,6 +106,9 @@ const LogIn = () => {
             </span>
             Entrar
           </button>
+          <a className="self-end" href="/auth/signup">
+            Criar uma conta
+          </a>
         </div>
         {errorMessage && (
           <div className="flex items-center px-6 py-4 text-red-700 bg-red-100 rounded">
