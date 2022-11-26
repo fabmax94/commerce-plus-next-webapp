@@ -25,8 +25,8 @@ const MyProducts = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product>(null);
   const { setTitle } = useContext(ContextLayout);
   const { pushData } = usePush(
-    selectedProduct?.id ? "products" : `products/${selectedProduct?.id}`,
-    selectedProduct?.id ? "PUT" : "POST"
+    selectedProduct ? `products/${selectedProduct?.id}` : "products",
+    selectedProduct ? "PUT" : "POST"
   );
 
   useEffect(() => setTitle("Lojas"), []);
