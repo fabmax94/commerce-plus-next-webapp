@@ -22,7 +22,7 @@ const MyCompanies = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [selectedCompany, setSelectedCompany] = useState<Company>(null);
   const { setTitle } = useContext(ContextLayout);
-  const { pushData } = usePush(
+  const { pushData, isLoading } = usePush(
     selectedCompany ? `companies/${selectedCompany?.id}` : "companies",
     selectedCompany ? "PUT" : "POST"
   );
@@ -204,7 +204,11 @@ const MyCompanies = () => {
         )}
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <CompanyForm handleSave={handleSave} initCompany={selectedCompany} />
+        <CompanyForm
+          handleSave={handleSave}
+          isSaving={isLoading}
+          initCompany={selectedCompany}
+        />
       </Modal>
     </div>
   );

@@ -1,11 +1,13 @@
 import { BiCurrentLocation } from "react-icons/bi";
-import { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Company, SubType, Type } from "../../interfaces/company";
 import Compressor from "compressorjs";
+import { FaSpinner } from "react-icons/fa";
 
 type CompanyFormProps = {
   handleSave: (e: Company) => void;
   initCompany?: Company;
+  isSaving: boolean;
 };
 
 const toBase64 = (file) =>
@@ -19,6 +21,7 @@ const toBase64 = (file) =>
 export const CompanyForm = ({
   handleSave,
   initCompany = null,
+  isSaving,
 }: CompanyFormProps) => {
   const [company, setCompany] = useState<Company>(initCompany);
 
@@ -181,8 +184,10 @@ export const CompanyForm = ({
         <button
           type="button"
           onClick={() => handleSave(company)}
+          disabled={isSaving}
           className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
+          {isSaving && <FaSpinner className="spinner mr-2" />}
           Salvar
         </button>
       </div>
