@@ -2,7 +2,7 @@ FROM node:18-alpine As development
 
 WORKDIR /usr/src/app
 
-COPY package*.json /usr/src/app
+COPY package*.json ./
 
 RUN npm ci
 
