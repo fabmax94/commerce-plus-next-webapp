@@ -25,7 +25,6 @@ const get = (uri, config = {}) => {
 };
 
 const post = (uri, data, config = {}) => {
-  console.log(getAuthorization(config));
   return server.post(uri, data, getAuthorization(config));
 };
 
