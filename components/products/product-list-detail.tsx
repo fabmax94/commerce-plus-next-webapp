@@ -23,7 +23,7 @@ const ProductListDetail = ({ product, onClick }: ProductListDetailParam) => {
         alt="Imagem do produto"
         className="object-cover object-center w-24 mr-5 rounded-lg"
         style={{ height: "6rem" }}
-        src={images[0]?.data}
+        src={images && images[0]?.data}
       />
     </div>
   );
