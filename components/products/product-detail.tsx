@@ -19,7 +19,7 @@ export const ProductDetail = ({ product, owner }: ProductDetailParam) => {
       <div className="grid lg:grid-cols-2 gap-4">
         <div className="p-3">
           <Carousel showThumbs={false} showStatus={false}>
-            {product?.images.map((image) => (
+            {product.images?.map((image) => (
               <div>
                 <img
                   src={image.data}
