@@ -28,7 +28,7 @@ export const ProductAdminListDetail = ({
         </td>
         <td className="">
           <div className="flex items-center pl-5">
-            <p className="text-base font-medium leading-none text-gray-700 mr-2">
+            <p className="text-base font-medium leading-none text-gray-700 mr-2 break-words whitespace-normal">
               {product.name}
             </p>
           </div>
