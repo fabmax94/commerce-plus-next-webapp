@@ -6,7 +6,7 @@ type ProductListDetailParam = {
 };
 
 const ProductListDetail = ({ product, onClick }: ProductListDetailParam) => {
-  const { name, description, price, image } = product;
+  const { name, description, price, images } = product;
   return (
     <div
       className="flex flex-row hover:shadow-lg p-2.5 cursor-pointer transition duration-300 hover:delay-150 shadow-md border border-gray-300"
@@ -22,7 +22,8 @@ const ProductListDetail = ({ product, onClick }: ProductListDetailParam) => {
       <img
         alt="Imagem do produto"
         className="object-cover object-center w-24 mr-5 rounded-lg"
-        src={image}
+        style={{ height: "6rem" }}
+        src={images[0]?.data}
       />
     </div>
   );

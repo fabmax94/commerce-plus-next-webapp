@@ -22,7 +22,7 @@ export const ProductAdminListDetail = ({
             <img
               alt="Imagem do produto"
               className="object-cover object-center h-20 w-20 p-1 mr-5 rounded-lg"
-              src={product.image}
+              src={product.images[0]?.data}
             />
           </div>
         </td>

@@ -1,6 +1,9 @@
 import { Product } from "../../interfaces/product";
 import React from "react";
 import { User } from "../../interfaces/user";
+import { Carousel } from "react-responsive-carousel";
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 type ProductDetailParam = {
   product: Product;
@@ -15,11 +18,18 @@ export const ProductDetail = ({ product, owner }: ProductDetailParam) => {
     <>
       <div className="grid lg:grid-cols-2 gap-4">
         <div className="p-3">
-          <img
-            alt="Imagem do produto"
-            className="object-cover object-center w-full"
-            src={product.image}
-          />
+          <Carousel showThumbs={false} showStatus={false}>
+            {product.images.map((image) => (
+              <div>
+                <img
+                  src={image.data}
+                  className="object-cover object-center w-24 mr-5 rounded-lg"
+                  style={{ height: "30rem" }}
+                  alt="Imagem do produto"
+                />
+              </div>
+            ))}
+          </Carousel>
         </div>
         <div className="flex flex-col px-3">
           <h3 className="text-lg mb-3 text-center">{product.name}</h3>

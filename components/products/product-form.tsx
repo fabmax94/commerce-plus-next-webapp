@@ -37,7 +37,10 @@ export const ProductForm = ({
       quality: 0.4,
       success: async (compressedResult) => {
         const fileBase64 = await toBase64(compressedResult);
-        handleChangeForm("image", fileBase64);
+        const newImages = product.images
+          ? [...product.images, { data: fileBase64 }]
+          : [{ data: fileBase64 }];
+        handleChangeForm("images", newImages);
       },
     });
   };
@@ -46,7 +49,7 @@ export const ProductForm = ({
     if (
       product?.name &&
       product?.description &&
-      product?.image &&
+      product?.images?.length &&
       product?.price &&
       product?.size
     ) {
@@ -145,12 +148,17 @@ export const ProductForm = ({
               </label>
               <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                 <div className="space-y-1 text-center flex flex-col items-center">
-                  {product?.image ? (
-                    <img
-                      alt="Imagem do produto"
-                      className="object-cover object-center w-24 rounded-lg"
-                      src={product?.image}
-                    />
+                  {product?.images?.length ? (
+                    <div className="flex flex-row space-x-2">
+                      {product.images.map((image) => (
+                        <img
+                          alt="Imagem do produto"
+                          className="object-cover object-center w-24 rounded-lg"
+                          style={{ height: "6rem" }}
+                          src={image.data}
+                        />
+                      ))}
+                    </div>
                   ) : (
                     <svg
                       className="mx-auto h-12 w-12 text-gray-400"
