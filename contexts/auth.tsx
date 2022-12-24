@@ -20,6 +20,8 @@ const ContextAuthProvider = ({ children }) => {
   const logOut = () => {
     removeCookie("token");
     setToken("");
+    setProfile(undefined);
+    localStorage.removeItem("profile");
   };
 
   const updateProfile = (newProfile: User) => {
@@ -28,9 +30,10 @@ const ContextAuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (cookies.token) {
+    const profileLocalStorage = localStorage.getItem("profile");
+    if (cookies.token && profileLocalStorage) {
       setToken(cookies.token);
-      setProfile(JSON.parse(localStorage.getItem("profile")));
+      setProfile(JSON.parse(profileLocalStorage));
     }
   }, []);
 

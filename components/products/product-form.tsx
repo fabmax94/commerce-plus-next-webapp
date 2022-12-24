@@ -1,5 +1,5 @@
 import { GrMoney } from "react-icons/gr";
-import { AiOutlineClose, AiOutlineNumber } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
 import React, { ChangeEvent, useState } from "react";
 import { BiErrorAlt } from "react-icons/bi";
 import { Product } from "../../interfaces/product";
@@ -50,8 +50,7 @@ export const ProductForm = ({
       product?.name &&
       product?.description &&
       product?.images?.length &&
-      product?.price &&
-      product?.size
+      product?.price
     ) {
       await handleSave(product);
     } else {
@@ -108,27 +107,6 @@ export const ProductForm = ({
                 htmlFor="company-website"
                 className="block text-sm font-medium text-gray-700"
               >
-                Tamanho
-              </label>
-              <div className="mt-1 flex rounded-md shadow-sm">
-                <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
-                  <AiOutlineNumber />
-                </span>
-                <input
-                  type="number"
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    handleChangeForm("size", e.target.value)
-                  }
-                  value={product?.size}
-                  className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                />
-              </div>
-            </div>
-            <div>
-              <label
-                htmlFor="company-website"
-                className="block text-sm font-medium text-gray-700"
-              >
                 Descrição
               </label>
               <div className="mt-1">
@@ -150,13 +128,26 @@ export const ProductForm = ({
                 <div className="space-y-1 text-center flex flex-col items-center">
                   {product?.images?.length ? (
                     <div className="flex flex-row space-x-2">
-                      {product.images.map((image) => (
-                        <img
-                          alt="Imagem do produto"
-                          className="object-cover object-center w-24 rounded-lg"
-                          style={{ height: "6rem" }}
-                          src={image.data}
-                        />
+                      {product.images.map((image, index) => (
+                        <div className="flex flex-col">
+                          <AiFillCloseCircle
+                            className="self-end cursor-pointer"
+                            onClick={() =>
+                              handleChangeForm(
+                                "images",
+                                product.images.filter(
+                                  (_, imageIndex) => imageIndex !== index
+                                )
+                              )
+                            }
+                          />
+                          <img
+                            alt="Imagem do produto"
+                            className="object-cover object-center w-24 rounded-lg"
+                            style={{ height: "6rem" }}
+                            src={image.data}
+                          />
+                        </div>
                       ))}
                     </div>
                   ) : (

@@ -1,4 +1,5 @@
 import { User } from "./user";
+import { Rate } from "./rate";
 
 export interface Company {
   id: number;
@@ -10,6 +11,7 @@ export interface Company {
   averageRate: number;
   averagePrice: number;
   owner: User;
+  rates: Rate[];
 }
 
 export enum Type {

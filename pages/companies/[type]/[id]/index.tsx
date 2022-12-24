@@ -8,15 +8,19 @@ import { Product } from "../../../../interfaces/product";
 import { Company, SubType, Type } from "../../../../interfaces/company";
 import { Modal } from "../../../../components/modal";
 import { ProductDetail } from "../../../../components/products/product-detail";
+import { Rates } from "../../../../components/rates";
 
 const CompanyDetail = () => {
   const { query } = useRouter();
-  const { data: company } = useFetch<Company>(`companies/${query.id}`);
+  const { data: company, reValidate } = useFetch<Company>(
+    `companies/${query.id}`
+  );
   const { data: products } = useFetch<Product[]>(
     `companies/${query.id}/products`
   );
   const [selectedProduct, setSelectedProduct] = useState<Product>(null);
   const [open, setOpen] = useState<boolean>(false);
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false);
   const { setTitle } = useContext(ContextLayout);
 
   const handleClickDetail = (product: Product) => {
@@ -42,7 +46,10 @@ const CompanyDetail = () => {
           <h1 className="text-4xl">{company.name}</h1>
         </div>
         <div className="flex flex-row text-sm text-slate-500 font-light space-x-1 mt-1 sm:ml-5">
-          <span className="text-orange-500">
+          <span
+            className="text-orange-500 cursor-pointer"
+            onClick={() => setOpenDrawer(true)}
+          >
             <AiFillStar style={{ display: "inline" }} className="mr-1" />
             {company.averageRate}
           </span>
@@ -70,6 +77,12 @@ const CompanyDetail = () => {
       <Modal open={open} setOpen={setOpen}>
         <ProductDetail product={selectedProduct} owner={company.owner} />
       </Modal>
+      <Rates
+        isOpen={openDrawer}
+        setIsOpen={setOpenDrawer}
+        company={company}
+        refresh={reValidate}
+      />
     </div>
   );
 };

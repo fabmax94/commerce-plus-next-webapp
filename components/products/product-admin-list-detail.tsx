@@ -1,5 +1,4 @@
 import { GrMoney } from "react-icons/gr";
-import { AiOutlineNumber } from "react-icons/ai";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
@@ -41,17 +40,9 @@ export const ProductAdminListDetail = ({
             </p>
           </div>
         </td>
-        <td className="pl-5 hidden md:table-cell">
-          <div className="flex items-center">
-            <AiOutlineNumber />
-            <p className="text-sm leading-none text-gray-600 ml-2">
-              {product.size}
-            </p>
-          </div>
-        </td>
         <td>
           <div className="flex justify-end pr-3 space-x-3">
-            <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+            <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in md:pt-2 sm:pt-1">
               <input
                 type="checkbox"
                 onChange={(e) =>
