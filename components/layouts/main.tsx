@@ -72,6 +72,7 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" type="image/x-icon" href="/static/logo.png" />
       </Head>
       <div className="min-h-full">
         {!["Entrar", "Cadastre-se"].includes(title) && (
@@ -84,8 +85,8 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
                 >
                   <div className="flex-shrink-0">
                     <img
-                      className="h-8 w-8"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                      className="h-14 w-14"
+                      src="/static/logo.png"
                       alt="Your Company"
                     />
                   </div>
