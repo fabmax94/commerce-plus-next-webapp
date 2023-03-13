@@ -14,6 +14,8 @@ next
 compressorjs
 react-cookie
 swr
+tailwind
+axios
 ```
 
 ## Run (docker-compose)
