@@ -35,7 +35,10 @@ export const ProductDetail = ({ product, owner }: ProductDetailParam) => {
         </div>
         <div className="flex flex-col px-3">
           <h3 className="text-lg mb-3 text-center">{product.name}</h3>
-          <span className="text-sm font-light text-zinc-500 mb-1">
+          <span
+            className="text-sm font-light text-zinc-500 mb-1"
+            style={{ whiteSpace: "break-spaces" }}
+          >
             {product.description}
           </span>
           <span className="text-sm font-light">R${product.price}</span>
