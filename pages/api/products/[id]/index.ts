@@ -12,4 +12,12 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: "500mb",
+    },
+  },
+};
+
 export default handler;
