@@ -32,16 +32,20 @@ export const ProductForm = ({
   };
 
   const handleCompressedUpload = (e) => {
-    const image = e.target.files[0];
-    new Compressor(image, {
-      quality: 0.4,
-      success: async (compressedResult) => {
-        const fileBase64 = await toBase64(compressedResult);
-        const newImages = product.images
-          ? [...product.images, { data: fileBase64 }]
-          : [{ data: fileBase64 }];
-        handleChangeForm("images", newImages);
-      },
+    let imagesToSave = [];
+    Array.from(e.target.files).forEach((image: File) => {
+      new Compressor(image, {
+        quality: 0.4,
+        success: async (compressedResult) => {
+          const fileBase64 = await toBase64(compressedResult);
+          const newImages = product.images
+            ? [...product.images, { data: fileBase64 }]
+            : [{ data: fileBase64 }];
+
+          imagesToSave = [...imagesToSave, ...newImages];
+          handleChangeForm("images", imagesToSave);
+        },
+      });
     });
   };
 
@@ -178,6 +182,7 @@ export const ProductForm = ({
                         name="file-upload"
                         onChange={handleCompressedUpload}
                         type="file"
+                        multiple
                         className="sr-only"
                       />
                     </label>
