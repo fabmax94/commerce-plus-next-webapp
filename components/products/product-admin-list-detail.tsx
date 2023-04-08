@@ -46,10 +46,13 @@ export const ProductAdminListDetail = ({
               <input
                 type="checkbox"
                 onChange={(e) =>
-                  handleSave({
-                    ...product,
-                    isInactive: !e.target.checked,
-                  })
+                  handleSave(
+                    {
+                      ...product,
+                      isInactive: !e.target.checked,
+                    },
+                    true
+                  )
                 }
                 id={`toggle-${product.id}`}
                 checked={!product.isInactive}

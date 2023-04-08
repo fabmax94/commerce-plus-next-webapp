@@ -35,13 +35,28 @@ const MyProducts = () => {
     return null;
   }
 
-  const handleSave = async (product) => {
+  const handleSave = async (product, activeFlag = false) => {
     await pushData({
       ...product,
       companyId: query.id,
     });
     setOpen(false);
-    await reValidate();
+    if (activeFlag) {
+      product.isInactive = !product.isInactive;
+      await reValidate(
+        products.map((productMap) => {
+          if (product.id === productMap.id) {
+            return {
+              ...productMap,
+              isInactive: !productMap.isInactive,
+            };
+          }
+          return productMap;
+        })
+      );
+    } else {
+      await reValidate();
+    }
   };
 
   const productsFiltered = products

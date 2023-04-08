@@ -62,8 +62,6 @@ export const Rates = ({ setIsOpen, isOpen, company, refresh }: RatesProps) => {
 
   const alreadyRating = rates.some((rate) => rate.user.id === profile?.id);
 
-  console.log(profile);
-
   return (
     <Drawer
       title={
