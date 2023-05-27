@@ -32,4 +32,8 @@ const put = (uri, data, config = {}) => {
   return server.patch(uri, data, getAuthorization(config));
 };
 
-export { get, post, put, server };
+const remove = (uri, config = {}) => {
+  return server.delete(uri, getAuthorization(config));
+};
+
+export { get, post, put, remove, server };

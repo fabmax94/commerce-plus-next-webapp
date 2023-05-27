@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { put } from "../../../../libs/server";
+import { put, remove } from "../../../../libs/server";
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = _req.query;
-    const response = await put(`products/${id}`, _req.body);
+    let response;
+    if (_req.method === "DELETE") {
+      response = await remove(`products/${id}`, _req.cookies);
+    } else {
+      response = await put(`products/${id}`, _req.body);
+    }
 
     res.status(200).json(response.data);
   } catch (err: any) {

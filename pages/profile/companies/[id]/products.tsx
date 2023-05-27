@@ -43,6 +43,7 @@ const MyProducts = () => {
     selectedProduct ? `products/${selectedProduct?.id}` : "products",
     selectedProduct ? "PUT" : "POST"
   );
+  const { pushData: removeData } = usePush(`products`, "DELETE");
 
   useEffect(() => setTitle("Lojas"), []);
 
@@ -54,6 +55,11 @@ const MyProducts = () => {
       </>
     );
   }
+
+  const handleRemove = async (product) => {
+    await removeData(null, { id: product.id });
+    await reValidate();
+  };
 
   const handleSave = async (product, activeFlag = false) => {
     await pushData({
@@ -144,6 +150,7 @@ const MyProducts = () => {
                   setSelectedProduct={setSelectedProduct}
                   setOpen={setOpen}
                   handleSave={handleSave}
+                  handleRemove={handleRemove}
                 />
               ))}
             </tbody>

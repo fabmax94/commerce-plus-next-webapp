@@ -23,4 +23,8 @@ const post = (uri, data, config = {}) => {
   return server.post(uri, data, config);
 };
 
-export { get, post, put, server };
+const remove = (uri, config = {}) => {
+  return server.delete(uri, config);
+};
+
+export { get, post, put, remove, server };

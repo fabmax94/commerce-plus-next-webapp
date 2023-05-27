@@ -10,6 +10,7 @@ function classNames(...classes) {
 export const ProductAdminListDetail = ({
   product,
   handleSave,
+  handleRemove,
   setSelectedProduct,
   setOpen,
 }) => {
@@ -73,6 +74,20 @@ export const ProductAdminListDetail = ({
               Editar
             </button>
 
+            <button
+              className="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-3 px-5 bg-red-100 rounded hover:bg-red-200 focus:outline-none mr-2 hidden md:table-cell"
+              onClick={async () => {
+                const response = confirm(
+                  "Tenha certeza que deseja remover este produto?"
+                );
+                if (response) {
+                  await handleRemove(product);
+                }
+              }}
+            >
+              Remover
+            </button>
+
             <div className="flex justify-end pr-5 mt-1 md:hidden">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
@@ -113,6 +128,29 @@ export const ProductAdminListDetail = ({
                             )}
                           >
                             Editar
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            onClick={async () => {
+                              const response = confirm(
+                                "Tenha certeza que deseja remover este produto?"
+                              );
+                              if (response) {
+                                await handleRemove(product);
+                              }
+                            }}
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-gray-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            Remover
                           </a>
                         )}
                       </Menu.Item>
