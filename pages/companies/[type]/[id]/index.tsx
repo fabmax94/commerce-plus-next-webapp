@@ -62,6 +62,8 @@ const CompanyDetail = () => {
     if (query.productId) {
       setSelectedProductId(Number(query.productId));
       setOpen(true);
+    } else {
+      setOpen(false);
     }
   }, [query]);
 
