@@ -67,7 +67,9 @@ export const Rates = ({ setIsOpen, isOpen, company, refresh }: RatesProps) => {
       title={
         <div className="flex flex-col flex-1 items-center p-4">
           <span className="text-base font-sans">Avaliações da Loja</span>
-          <span className="text-slate-500 font-light text-xs">Mc Donalds</span>
+          <span className="text-slate-500 font-light text-xs">
+            {company.name}
+          </span>
           <span className="text-orange-500 cursor-pointer mt-3 mb-1">
             <AiFillStar style={{ display: "inline" }} className="mr-1" />
             {company.averageRate}

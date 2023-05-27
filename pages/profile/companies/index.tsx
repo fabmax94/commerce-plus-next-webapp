@@ -194,6 +194,17 @@ const MyCompanies = () => {
                   <tr className="h-3"></tr>
                 </>
               ))}
+              {companies?.length === 0 && (
+                <tr className="focus:outline-none h-16 border border-gray-100 rounded">
+                  <td>
+                    <div className="flex items-center pl-5 justify-center">
+                      <p className="text-base font-medium leading-none text-gray-700 mr-2">
+                        Nenhuma loja encontrada
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

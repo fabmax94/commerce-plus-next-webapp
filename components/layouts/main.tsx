@@ -86,6 +86,7 @@ const Main = ({ children, title = "Commerce Plus" }: MainProps) => {
                   <div className="flex-shrink-0">
                     <img
                       className="h-14 w-14"
+                      onClick={() => router.push("/")}
                       src="/static/logo.png"
                       alt="Your Company"
                     />

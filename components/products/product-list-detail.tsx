@@ -1,4 +1,5 @@
 import { Product } from "../../interfaces/product";
+import React from "react";
 
 type ProductListDetailParam = {
   product: Product;
@@ -14,7 +15,10 @@ const ProductListDetail = ({ product, onClick }: ProductListDetailParam) => {
     >
       <div className="flex flex-col flex-1">
         <h3 className="text-lg mb-3">{name}</h3>
-        <span className="text-sm font-light text-zinc-500 mb-5">
+        <span
+          className="text-sm font-light text-zinc-500 mb-1"
+          style={{ whiteSpace: "break-spaces" }}
+        >
           {description}
         </span>
         <span className="text-base">R${price}</span>

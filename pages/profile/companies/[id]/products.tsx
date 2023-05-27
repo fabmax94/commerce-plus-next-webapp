@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFetch } from "../../../../hooks/fetch";
 import { ContextLayout } from "../../../../contexts/layout";
@@ -13,6 +13,21 @@ const filterCssSelected =
   "rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 mr-2 py-2 px-8 bg-indigo-100 text-indigo-700 rounded-full";
 const filterCssUnSelected =
   "rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 mr-2 py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full";
+
+const Loading = () => (
+  <div className="border shadow rounded-md p-4 max-w-sm w-full mx-auto mt-5">
+    <div className="animate-pulse flex space-x-4">
+      <div className="flex-1 space-y-6 py-1">
+        <div className="space-y-3">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="h-5 bg-slate-700 rounded col-span-2"></div>
+            <div className="h-5 bg-slate-700 rounded col-span-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const MyProducts = () => {
   const { query } = useRouter();
@@ -32,7 +47,12 @@ const MyProducts = () => {
   useEffect(() => setTitle("Lojas"), []);
 
   if (!company || !products || !query.id) {
-    return null;
+    return (
+      <>
+        <Loading />
+        <Loading />
+      </>
+    );
   }
 
   const handleSave = async (product, activeFlag = false) => {
