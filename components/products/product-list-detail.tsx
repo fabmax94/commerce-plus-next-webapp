@@ -19,7 +19,7 @@ const ProductListDetail = ({ product, onClick }: ProductListDetailParam) => {
           className="text-sm font-light text-zinc-500 mb-1"
           style={{ whiteSpace: "break-spaces" }}
         >
-          {description}
+          {description.substring(0, 100)} {description.length > 100 && "..."}
         </span>
         <span className="text-base">R${price}</span>
       </div>

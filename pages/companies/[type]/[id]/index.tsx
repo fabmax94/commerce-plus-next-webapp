@@ -109,7 +109,7 @@ const CompanyDetail = () => {
           Nenhum produto encontrado
         </span>
       )}
-      <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-4 mt-10">
+      <div className="grid lg:grid-cols-2 xs:grid-cols-1 gap-4 mt-10 mb-5">
         {products
           ?.filter((product) => !product.isInactive)
           ?.map((product) => (
