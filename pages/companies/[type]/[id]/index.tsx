@@ -41,7 +41,7 @@ const CompanyDetail = () => {
   const { setTitle } = useContext(ContextLayout);
 
   const handleClickDetail = async (product: Product) => {
-    await push(`/companies/${query.type}/2?productId=${product.id}`);
+    await push(`/companies/${query.type}/${query.id}?productId=${product.id}`);
   };
 
   const handleOpen = async (isOpen) => {
